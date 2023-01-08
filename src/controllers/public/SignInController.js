@@ -33,7 +33,9 @@ const SignIncontroller = async(req,res)=>{
     }
     const token = createTokenFunc(payload);
     res.json({
-        userInfo:payload,
+        email,
+        username,
+        id,
       userToken:  token,
         type:"success",
         message:"user logged in successfully",
