@@ -8,6 +8,7 @@ const SignInController =require("../controllers/public/SignInController");
 const GetAllMoviesController = require('../controllers/public/GetAllMoviesController')
 const GetSingleMovieController = require('../controllers/public/GetSingleMovieController')
 const GetMovieOnSearchController = require('../controllers/public/GetMovieOnSearchController')
+const {cinemaByCity} = require('../controllers/public/CinemaController')
 
 router.post('/sign-up', SignUpController);
 
@@ -18,5 +19,7 @@ router.get('/movie/get-allMovies',GetAllMoviesController);
 router.get('/search',GetMovieOnSearchController);
 
 router.get('/movie/:movieid',GetSingleMovieController);
+
+router.get('/cinema/:city',cinemaByCity)
 
 module.exports = router;

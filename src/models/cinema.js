@@ -1,11 +1,17 @@
 const mongoose = require('mongoose')
 //Schema
-const cinemaSchema = new mongoose.Schema({
+const { Schema } = mongoose;
+const cinemaSchema = new Schema({
   name: {
     type: String,
     required: true,
     trim: true,
   },
+  movieId:{
+      type: Schema.Types.ObjectId,
+     ref:'Movie',
+     required:true,
+    },
   city: {
     type: String,
     required: true,
