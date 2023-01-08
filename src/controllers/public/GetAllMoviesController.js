@@ -1,6 +1,8 @@
 const Movie = require('../../models/movie');
 
 const GetAllMoviesController = async(req,res)=>{
+  const qParams = req.query;
+  console.log(qParams);
     try{
        const movies = await Movie.find();
        if (!movies) {
