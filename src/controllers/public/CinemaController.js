@@ -36,3 +36,19 @@ exports.cinemaByCity = async (req,res)=>{
       })
     }
   }
+//cities...
+  exports.cities= async (req,res)=>{
+  
+    try {
+      const cities = await Cinema.find({},{city:1,_id:0});
+      console.log(cities);
+      res.status(200).json({ 
+        cities
+      });
+    } catch(error) {
+      res.status(400).json({
+        message:"unable to get theater",
+        error
+      })
+    }
+  }
