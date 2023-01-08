@@ -5,7 +5,7 @@ exports.cinemaByCity = async (req,res)=>{
     const {city}= req.params;
     console.log(city);
     try {
-      let arr=[];
+      
       const cinema = await Cinema.find({ city });
         // console.log(cinema[1].name,"theater Name")
       let value =[];
