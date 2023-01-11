@@ -3,30 +3,30 @@ const Movie = require('../../models/movie');
 
 exports.cinemaByCity = async (req,res)=>{
     const {city}= req.params;
-    console.log(city);
+    // console.log(city);
     try {
       
       const cinema = await Cinema.find({ city });
         // console.log(cinema[1].name,"theater Name")
-      let value =[];
-      console.log(value);
+      let movies =[];
+     
       for(let i=0;i<cinema.length;i++){
         let theater = cinema[i];
-         console.log(theater,"theater");
+        //  console.log(theater,"theater");
          //to get movies
          let movieId= theater.movieId
-         console.log(movieId,"movieId")
+        //  console.log(movieId,"movieId")
         if(movieId){
           const movie = await Movie.findById(movieId);
-           console.log("movie name"+movie.title);
-          value.push(movie);
+          //  console.log("movie name"+movie.title);
+          movies.push(movie);
         }
       }
       //  console.log(val,"value")
       res.status(200).json({
         type:'success',
         message: 'Fetched cinema successfully',
-        movieData:value,
+        movieData:movies,
         cinemaData:cinema
       });
     } catch(error) {
