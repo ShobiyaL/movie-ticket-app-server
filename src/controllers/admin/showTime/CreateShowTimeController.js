@@ -8,11 +8,12 @@ const { ObjectId } = mongoose.Types;
 
 // To add a showTiming
 exports.createShowTime = async (req, res) => {
-    req.body.date = new Date(req.body.date);
-  const {startAt,date,movieId,cinemaId}= req.body;
+    let date = new Date(req.body.date);
+    console.log(date);
+  const {startAt,movieId,cinemaId}= req.body;
     try{
         const showTime = await ShowTime.create({
-            startAt,date,movieId,cinemaId
+            startAt,date,movieId,cinemaId 
         })
         if (!showTime) {
          return res
