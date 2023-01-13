@@ -1,8 +1,6 @@
-const mongoose = require('mongoose')
+
 const ShowTime = require('../../models/showTime');
 const Cinema = require('../../models/cinema');
-
-const { ObjectId } = mongoose.Types;
 
 
 // to get all show Times
@@ -64,7 +62,7 @@ exports.getShowTime = async (req,res)=>{
     console.log(movieId)
     try {
         const showTime = await ShowTime.find({movieId,date });
-        //  console.log(showTime);
+          console.log(showTime);
         let cinema_id = showTime.map((value,index) =>{
             return value.cinemaId;
         })
