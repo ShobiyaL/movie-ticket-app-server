@@ -1,8 +1,8 @@
-
+const mongoose = require('mongoose')
 const ShowTime = require('../../models/showTime');
-const Cinema = require('../../models/cinema');
+// const Cinema = require('../../models/cinema');
 
-
+const { ObjectId } = mongoose.Types;
 // to get all show Times
 
 exports.allShowTime = async(req,res)=>{
