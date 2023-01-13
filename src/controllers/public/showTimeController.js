@@ -1,15 +1,27 @@
 const mongoose = require('mongoose')
-const ShowTime = require('../../models/showTime')
+const ShowTime = require('../../models/showTime');
 
 const { ObjectId } = mongoose.Types;
-//  To get showTime and theater based on movie id
 
-exports.getShowTime = async (req, res) => {
-  console.log(req);
+
+// to get all show Times
+
+exports.allShowTime = async(req,res)=>{
+    try{
+    const showTime = await ShowTime.find({})
+    res.json({
+        type:"success",
+        showTime
+    })
+    console.log(showTime)
+    }catch(error){
+        console.log(error)
+    }
+  }
+// To get ShowTime and cinemas based on movie id
+exports.getShowTime = async (req, res, next) => {
     const { selectedDate } = req.query;
-     console.log(selectedDate)
     const { movieid } = req.params;
-     console.log(movieid);
     try {
       const showTime = await ShowTime.aggregate([
         {
@@ -30,18 +42,14 @@ exports.getShowTime = async (req, res) => {
           $unset: ['cinema_details._id']
         }
       ]);
-  console.log(showTime);
+  console.log(showTime)
       res.status(200).json({
-        type:'Success',
-        message: 'success',
-        showTime,
+        type: 'success',
+        showTime
       });
-    } catch(error) {
-        console.log(error)
-      res.status(500).json({
-          message: 'failure',
-          type:"error"
-        });
-      
+    } catch (error){
+      console.log(error)
     }
   };
+
+  
