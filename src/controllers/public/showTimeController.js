@@ -5,6 +5,7 @@ const { ObjectId } = mongoose.Types;
 //  To get showTime and theater based on movie id
 
 exports.getShowTime = async (req, res) => {
+  console.log(req);
     const { selectedDate } = req.query;
      console.log(selectedDate)
     const { movieid } = req.params;
