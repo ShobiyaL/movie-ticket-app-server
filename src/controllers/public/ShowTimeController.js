@@ -20,74 +20,74 @@ exports.allShowTime = async(req,res)=>{
   }
 
 // // To get ShowTime and cinemas based on movie id
-// exports.getShowTime = async (req, res) => {
-//     const { selectedDate } = req.query;
-//     const { movieid } = req.params;
-//     try {
-//       const showTime = await ShowTime.aggregate([
-//         {
-//           $match: {
-//             movieId: ObjectId(`${movieid}`),
-//             date: { $eq: new Date(selectedDate) }
-//           }
-//         },
-//         {
-//           $lookup: {
-//             from: 'cinemas',
-//             localField: 'cinemaId',
-//             foreignField: '_id',
-//             as: 'cinema_details'
-//           }
-//         },
-//         {
-//           $unset: ['cinema_details._id']
-//         }
-//       ]).allowDiskUse(true);
-//   console.log(showTime)
-//       res.status(200).json({
-//         type: 'success',
-//         showTime
-//       });
-//     } catch (error){
-//       console.log(error)
-//     }
-//   };
+exports.getShowTime = async (req, res) => {
+    const { selectedDate } = req.query;
+    const { movieid } = req.params;
+    try {
+      const showTime = await ShowTime.aggregate([
+        {
+          $match: {
+            movieId: ObjectId(`${movieid}`),
+            date: { $eq: new Date(selectedDate) }
+          }
+        },
+        {
+          $lookup: {
+            from: 'cinemas',
+            localField: 'cinemaId',
+            foreignField: '_id',
+            as: 'cinema_details'
+          }
+        },
+        {
+          $unset: ['cinema_details._id']
+        }
+      ]).allowDiskUse(true);
+  console.log(showTime)
+      res.status(200).json({
+        type: 'success',
+        showTime
+      });
+    } catch (error){
+      console.log(error)
+    }
+  };
 
 //get show time by cinemaId
-exports.getShowTimeByCinemaId = async(req,res)=>{
-    const {cinemaId} = req.params;
-    console.log("cinemaId"+cinemaId);
-    // let date = new Date(selectedDate);
-    try {
-        const showTime = await ShowTime.find({cinemaId});
-        console.log(showTime);
-        res.json({
-            type:"success",
-            showTime
-        })
-    } catch (error) {
-        console.log(error)
-    }
-}
+// exports.getShowTimeByCinemaId = async(req,res)=>{
+//     const {cinemaId} = req.params;
+//     console.log("cinemaId"+cinemaId);
+//     // let date = new Date(selectedDate);
+//     try {
+//         const showTime = await ShowTime.find({cinemaId});
+//         console.log(showTime);
+//         res.json({
+//             type:"success",
+//             showTime
+//         })
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
 //get show time by movieId
-exports.getShowTimeByMovieId = async(req,res)=>{
-    const {movieId} = req.params;
-    const {selectedDate}= req.query;
-     let date =  new Date(selectedDate);
-    try {
-        const showTime = await ShowTime.find({movieId,date});
-        console.log("checking after creating st in the prod"+showTime);
-        res.json({
-            selectedDate,
-            date,
-            type:"success",
-            showTime
-        })
-    } catch (error) {
-        console.log(error)
-    }
-}
+// exports.getShowTimeByMovieId = async(req,res)=>{
+//     const {movieId} = req.params;
+//     const {selectedDate}= req.query;
+//      let date =  new Date(selectedDate);
+//     try {
+//         const showTime = await ShowTime.find({movieId,date});
+//         console.log("checking after creating st in the prod"+showTime);
+//         res.json({
+//             selectedDate,
+//             date,
+//             type:"success",
+//             showTime
+//         })
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
 // to get showTime and cinemas based on movie id
 // exports.getShowTime = async (req,res)=>{

@@ -29,10 +29,10 @@ router.get('/cinema/filter/cities',cities) ;
 
  router.get('/showTime/allShowTime',allShowTime);
 
-//  router.get('/showTime/:movieId',getShowTime);
+  router.get('/showTime/:movieId',getShowTime);
 
- router.get ('/showTime/:movieId',getShowTimeByMovieId);
+//  router.get ('/showTime/:movieId',getShowTimeByMovieId);
 
-router.get('/showTime/cinema/:cinemaId',getShowTimeByCinemaId)
+// router.get('/showTime/cinema/:cinemaId',getShowTimeByCinemaId)
 
 module.exports = router;
