@@ -74,7 +74,7 @@ exports.getShowTimeByCinemaId = async(req,res)=>{
 exports.getShowTimeByMovieId = async(req,res)=>{
     const {movieId} = req.params;
     const {selectedDate}= req.query;
-    let date = new Date("1/13/2023");
+    let date =  new Date("1/13/2023").toUTCString();
     try {
         const showTime = await ShowTime.find({movieId,date});
         console.log(showTime);
