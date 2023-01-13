@@ -79,6 +79,8 @@ exports.getShowTimeByMovieId = async(req,res)=>{
         const showTime = await ShowTime.find({movieId,date});
         console.log("checking after creating st in the prod"+showTime);
         res.json({
+            selectedDate,
+            date,
             type:"success",
             showTime
         })

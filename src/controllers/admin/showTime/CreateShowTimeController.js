@@ -11,12 +11,12 @@ exports.createShowTime = async (req, res) => {
   req.body.date = new Date(req.body.date);
   console.log(req.body.date);
   const {startAt,date,movieId,cinemaId}= req.body;
-  console.log(date);
+  console.log("production"+date);
     try{
         const showTime = await ShowTime.create({
             startAt,date,movieId,cinemaId 
         })
-        console.log(showTime);
+        console.log("production"+showTime);
         if (!showTime) {
          return res
            .status(401)
