@@ -53,6 +53,23 @@ exports.allShowTime = async(req,res)=>{
 //     }
 //   };
 
+//get show time by cinemaId
+exports.getShowTimeByCinemaId = async(req,res)=>{
+    const {cinemaId} = req.params;
+    console.log(cinemaId);
+    // let date = new Date(selectedDate);
+    try {
+        const showTime = await ShowTime.find({cinemaId});
+        console.log(showTime);
+        res.json({
+            type:"success",
+            showTime
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 //get show time by movieId
 exports.getShowTimeByMovieId = async(req,res)=>{
     const {movieId} = req.params;
@@ -70,22 +87,7 @@ exports.getShowTimeByMovieId = async(req,res)=>{
         console.log(error)
     }
 }
-//get show time by cinemaId
-exports.getShowTimeByCinemaId = async(req,res)=>{
-    const {cinemaId} = req.params;
-    console.log(cinemaId);
-    // let date = new Date(selectedDate);
-    try {
-        const showTime = await ShowTime.find({cinemaId});
-        console.log(showTime);
-        res.json({
-            type:"success",
-            showTime
-        })
-    } catch (error) {
-        console.log(error)
-    }
-}
+
 // to get showTime and cinemas based on movie id
 // exports.getShowTime = async (req,res)=>{
 //     const { selectedDate } = req.query;
