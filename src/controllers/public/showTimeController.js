@@ -29,11 +29,11 @@ exports.getShowTime = async (req, res) => {
           $unset: ['cinema_details._id']
         }
       ]);
-//   console.log(showTime);
+  console.log(showTime);
       res.status(200).json({
         type:'Success',
         message: 'success',
-        showTime
+        showTime,
       });
     } catch(error) {
         console.log(error)
