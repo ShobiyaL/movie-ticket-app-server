@@ -10,7 +10,7 @@ const GetSingleMovieController = require('../controllers/public/GetSingleMovieCo
 const GetMovieOnSearchController = require('../controllers/public/GetMovieOnSearchController')
 const {cinemaByCity,cities} = require('../controllers/public/CinemaController')
 
-const {getShowTime,allShowTime} = require('../controllers/public/ShowTimeController')
+// const {getShowTime,allShowTime} = require('../controllers/public/ShowTimeController')
 
 
 router.post('/sign-up', SignUpController);
@@ -27,9 +27,9 @@ router.get('/cinema/:city',cinemaByCity)
 
 router.get('/cinema/filter/cities',cities) ;
 
- router.get('/showTime/allShowTime',allShowTime);
+//  router.get('/showTime/allShowTime',allShowTime);
 
- router.get('/showTime/:movieid',getShowTime);
+//  router.get('/showTime/:movieid',getShowTime);
 
 
 
