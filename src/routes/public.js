@@ -29,7 +29,7 @@ router.get('/cinema/filter/cities',cities) ;
 
  router.get('/showTime/allShowTime',allShowTime);
 
- router.get('/showTime/:movieid',getShowTime);
+ router.get('/showTime/:movieId',getShowTime);
 
 
 

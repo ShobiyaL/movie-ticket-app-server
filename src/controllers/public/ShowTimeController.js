@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const ShowTime = require('../../models/showTime');
+const Cinema = require('../../models/cinema');
 
 const { ObjectId } = mongoose.Types;
 
@@ -16,45 +17,77 @@ exports.allShowTime = async(req,res)=>{
     console.log(showTime)
     }catch(error){
         console.log(error)
+        res.status(500).json({ message: error.message, type:"error" });
     }
   }
 
 // // To get ShowTime and cinemas based on movie id
-exports.getShowTime = async (req, res, next) => {
-    const { selectedDate } = req.query;
-    const { movieid } = req.params;
-    try {
-      const showTime = await ShowTime.aggregate([
-        {
-          $match: {
-            movieId: ObjectId(`${movieid}`),
-            date: { $eq: new Date(selectedDate) }
-          }
-        },
-        {
-          $lookup: {
-            from: 'cinemas',
-            localField: 'cinemaId',
-            foreignField: '_id',
-            as: 'cinema_details'
-          }
-        },
-        {
-          $unset: ['cinema_details._id']
-        }
-      ]).allowDiskUse(true);
-  console.log(showTime)
-      res.status(200).json({
-        type: 'success',
-        showTime
-      });
-    } catch (error){
-      console.log(error)
-    }
-  };
+// exports.getShowTime = async (req, res) => {
+//     const { selectedDate } = req.query;
+//     const { movieid } = req.params;
+//     try {
+//       const showTime = await ShowTime.aggregate([
+//         {
+//           $match: {
+//             movieId: ObjectId(`${movieid}`),
+//             date: { $eq: new Date(selectedDate) }
+//           }
+//         },
+//         {
+//           $lookup: {
+//             from: 'cinemas',
+//             localField: 'cinemaId',
+//             foreignField: '_id',
+//             as: 'cinema_details'
+//           }
+//         },
+//         {
+//           $unset: ['cinema_details._id']
+//         }
+//       ]).allowDiskUse(true);
+//   console.log(showTime)
+//       res.status(200).json({
+//         type: 'success',
+//         showTime
+//       });
+//     } catch (error){
+//       console.log(error)
+//     }
+//   };
 
 
 // to get showTime and cinemas based on movie id
+exports.getShowTime = async (req,res)=>{
+    const { selectedDate } = req.query;
+    let date = new Date(selectedDate);
+    const { movieId } = req.params;
+    console.log(movieId)
+    try {
+        const showTime = await ShowTime.find({movieId,date });
+        //  console.log(showTime);
+        let cinema_id = showTime.map((value,index) =>{
+            return value.cinemaId;
+        })
+        // console.log(cinema_id);
+        let cinema_details=[];
+        for (let i=0;i<cinema_id.length;i++){
+            if(cinema_id){
+                const cinema_dets = await Cinema.findById(cinema_id,{_id:0});
+                cinema_details.push(cinema_dets);
+            }
+        }
+//  console.log(cinema_details);
+         res.status(200).json({
+            type: 'success',
+            message:"success",
+            showTime,
+            cinemaData: cinema_details
+          });
+    } catch (error) {
 
+        console.log(error);
+        res.status(500).json({ message: error.message, type:"error" });
+    }
+}
 
   

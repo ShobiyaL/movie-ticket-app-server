@@ -30,7 +30,7 @@ exports.cinemaByCity = async (req,res)=>{
         cinemaData:cinema
       });
     } catch(error) {
-      res.status(400).json({
+      res.status(500).json({
         message:"unable to get theater",
         error
       })
@@ -46,7 +46,7 @@ exports.cinemaByCity = async (req,res)=>{
         cities
       });
     } catch(error) {
-      res.status(400).json({
+      res.status(500).json({
         message:"unable to get theater",
         error
       })
