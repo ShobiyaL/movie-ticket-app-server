@@ -42,7 +42,7 @@ exports.getShowTime = async (req, res, next) => {
         {
           $unset: ['cinema_details._id']
         }
-      ]);
+      ]).allowDiskUse(true);
   console.log(showTime)
       res.status(200).json({
         type: 'success',
@@ -52,5 +52,9 @@ exports.getShowTime = async (req, res, next) => {
       console.log(error)
     }
   };
+
+
+// to get showTime and cinemas based on movie id
+
 
   
