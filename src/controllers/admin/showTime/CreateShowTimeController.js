@@ -10,11 +10,15 @@ const { ObjectId } = mongoose.Types;
 exports.createShowTime = async (req, res) => {
   req.body.date = new Date(req.body.date);
   console.log(req.body.date);
-  const {startAt,date,movieId,cinemaId}= req.body;
+  const {startAt,movieId,cinemaId}= req.body;
+  const { date }= new Date(req.body.date);
   console.log("production"+date);
     try{
         const showTime = await ShowTime.create({
-            startAt,date,movieId,cinemaId 
+            startAt,
+            date,
+            movieId,
+            cinemaId 
         })
         console.log("production"+showTime);
         if (!showTime) {
