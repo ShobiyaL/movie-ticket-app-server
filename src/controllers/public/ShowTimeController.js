@@ -62,7 +62,7 @@ exports.getShowTimeByMovieId = async(req,res)=>{
         const showTime = await ShowTime.find({movieId,date});
         console.log(showTime);
         res.json({
-            // date,
+             date,
             type:"success",
             showTime
         })
