@@ -22,12 +22,12 @@ exports.allShowTime = async(req,res)=>{
 // // To get ShowTime and cinemas based on movie id
 exports.getShowTime = async (req, res) => {
     const { selectedDate } = req.query;
-    const { movieid } = req.params;
+    const { movieId } = req.params;
     try {
       const showTime = await ShowTime.aggregate([
         {
           $match: {
-            movieId: ObjectId(`${movieid}`),
+            movieId: ObjectId(`${movieId}`),
             date: { $eq: new Date(selectedDate) }
           }
         },
