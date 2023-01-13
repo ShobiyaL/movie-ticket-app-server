@@ -42,7 +42,7 @@ exports.getShowTime = async (req, res, next) => {
         {
           $unset: ['cinema_details._id']
         }
-      ]).exec();
+      ]).allowDiskUse(true);
   console.log(showTime)
       res.status(200).json({
         type: 'success',
