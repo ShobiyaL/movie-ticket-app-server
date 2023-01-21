@@ -52,3 +52,24 @@ exports.cinemaByCity = async (req,res)=>{
       })
     }
   }
+
+  exports.getCinemaById= async (req,res)=>{
+    const params = req.params;
+    console.log(params)
+    try {
+      const cinema = await Cinema.find({_id:req.params.cinemaid});
+      console.log(cinema);
+      res.status(200).json({ 
+        type:"success",
+        message:"success",
+        cinema
+      });
+    } catch(error) {
+      res.status(500).json({
+        message:"unable to get theater",
+        error
+      })
+    }
+  }
+
+  

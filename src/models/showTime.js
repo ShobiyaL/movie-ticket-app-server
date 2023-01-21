@@ -11,6 +11,7 @@ const showTimeSchema = new Schema({
     type: Date,
     required: true
   },
+  
   reservedSeats:{
      type:Array,
   },

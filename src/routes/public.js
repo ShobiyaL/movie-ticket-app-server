@@ -8,7 +8,7 @@ const SignInController =require("../controllers/public/SignInController");
 const GetAllMoviesController = require('../controllers/public/GetAllMoviesController')
 const GetSingleMovieController = require('../controllers/public/GetSingleMovieController')
 const GetMovieOnSearchController = require('../controllers/public/GetMovieOnSearchController')
-const {cinemaByCity,cities} = require('../controllers/public/CinemaController')
+const {cinemaByCity,cities,getCinemaById} = require('../controllers/public/CinemaController')
 
  const {getShowTime,allShowTime,getShowTimeByMovieId,getShowTimeByCinemaId} = require('../controllers/public/ShowTimeController')
 
@@ -30,6 +30,8 @@ router.get('/cinema/filter/cities',cities) ;
  router.get('/showTime/allShowTime',allShowTime);
 
   router.get('/showTime/:movieId',getShowTime);
+
+  router.get('/cinema/id/:cinemaid',getCinemaById);
 
 //  router.get ('/showTime/:movieId',getShowTimeByMovieId);
 

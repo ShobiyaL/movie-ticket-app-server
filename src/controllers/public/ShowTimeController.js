@@ -42,7 +42,7 @@ exports.getShowTime = async (req, res) => {
         {
           $unset: ['cinema_details._id']
         }
-      ]).allowDiskUse(true);
+      ])
   console.log(showTime)
       res.status(200).json({
         type: 'success',
@@ -54,21 +54,21 @@ exports.getShowTime = async (req, res) => {
   };
 
 //get show time by cinemaId
-// exports.getShowTimeByCinemaId = async(req,res)=>{
-//     const {cinemaId} = req.params;
-//     console.log("cinemaId"+cinemaId);
-//     // let date = new Date(selectedDate);
-//     try {
-//         const showTime = await ShowTime.find({cinemaId});
-//         console.log(showTime);
-//         res.json({
-//             type:"success",
-//             showTime
-//         })
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+exports.getShowTimeByCinemaId = async(req,res)=>{
+    const {cinemaId} = req.params;
+    console.log("cinemaId"+cinemaId);
+    // let date = new Date(selectedDate);
+    try {
+        const showTime = await ShowTime.find({cinemaId});
+        console.log(showTime);
+        res.json({
+            type:"success",
+            showTime
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 //get show time by movieId
 // exports.getShowTimeByMovieId = async(req,res)=>{

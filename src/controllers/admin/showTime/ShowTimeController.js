@@ -3,9 +3,6 @@ const ShowTime = require('../../../models/showTime')
 
 const { ObjectId } = mongoose.Types;
 
-
-
-
 // To add a showTiming
 exports.createShowTime = async (req, res) => {
   req.body.date = new Date(req.body.date);
@@ -14,7 +11,7 @@ exports.createShowTime = async (req, res) => {
     try{
       const showTime = new ShowTime(req.body);
       await showTime.save();
-        console.log("production"+showTime);
+        // console.log("production"+showTime);
         if (!showTime) {
          return res
            .status(401)

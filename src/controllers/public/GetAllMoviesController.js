@@ -16,3 +16,4 @@ const GetAllMoviesController = async(req,res)=>{
 }
 
 module.exports = GetAllMoviesController;
+
