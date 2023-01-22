@@ -12,7 +12,7 @@ const {cinemaByCity,cities,getCinemaById} = require('../controllers/public/Cinem
 
  const {getShowTime,allShowTime,updateShowTime,getShowTimeByMovieId,getShowTimeByCinemaId} = require('../controllers/public/ShowTimeController')
 
- const { createCheckoutSession } = require('../controllers/public/CheckoutController');
+ const { createCheckoutSession } = require('../controllers/public/CheckOutController');
  const {
   createReservation,
   getAllReservations,
