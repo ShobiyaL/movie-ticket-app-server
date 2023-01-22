@@ -60,8 +60,8 @@ exports.stripeEventHandler = async (req, res, next) => {
   // Verify stripe signature
   try {
     event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
-  } catch (err) {
-    return res.status(400).send(`Webhook error: ${err.message}`);
+  } catch (error) {
+    return res.status(400).json(`Webhook error: ${error.message}`);
   }
 
   // Handle the payment successfull event and update payment status to 'Success'
@@ -73,9 +73,13 @@ exports.stripeEventHandler = async (req, res, next) => {
         { _id: ObjectId(reservationId) },
         { $set: { paymentStatus: 'Success' } }
       );
-    } catch {
-      return next(new AppError('Unable to create movie at the moment', 400));
-    }
+    } catch(error) {
+      console.log(error);
+      res.status(500).json({
+      type:'error',
+      message: error.message
+     });
+     }
   }
 
   return res.status(200).json({ received: true });

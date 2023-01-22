@@ -5,9 +5,7 @@ const router = express.Router();
 const SignUpController = require("../controllers/public/SignUpController");
 const SignInController =require("../controllers/public/SignInController");
 
-const GetAllMoviesController = require('../controllers/public/GetAllMoviesController')
-const GetSingleMovieController = require('../controllers/public/GetSingleMovieController')
-const GetMovieOnSearchController = require('../controllers/public/GetMovieOnSearchController')
+const {GetAllMoviesController,GetSingleMovieController,GetMovieOnSearchController} = require('../controllers/public/MovieController')
 const {cinemaByCity,cities,getCinemaById} = require('../controllers/public/CinemaController')
 
  const {getShowTime,allShowTime,updateShowTime,getShowTimeByMovieId,getShowTimeByCinemaId} = require('../controllers/public/ShowTimeController')

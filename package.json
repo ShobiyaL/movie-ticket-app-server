@@ -26,6 +26,7 @@
     "nodemailer": "^6.8.0",
     "qrcode": "^1.5.1",
     "stripe": "^11.7.0",
+    "supertest": "^6.3.3",
     "validator": "^13.7.0"
   }
 }

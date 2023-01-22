@@ -1,5 +1,5 @@
 const supertest = require('supertest');
-const app = require('../../server');
+const app = require('../app');
 
 describe('Stripe webhook test', () => {
   it('it should has status code 400', async () => {
