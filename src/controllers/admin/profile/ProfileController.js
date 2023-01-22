@@ -1,7 +1,7 @@
 const User = require ('../../../models/user') 
 
 exports.getUserProfile = async (req, res) => {
-   const params = req.params
+//    const params = req.params
 //    console.log(params)
     const user = await User.findById({_id:req.params.userId})
   

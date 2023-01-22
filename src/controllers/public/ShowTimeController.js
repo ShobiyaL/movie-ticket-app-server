@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const ShowTime = require('../../models/showTime');
 // const Cinema = require('../../models/cinema');
+const {createCheckoutSession} = require('./CheckOutController');
 
 const { ObjectId } = mongoose.Types;
 // to get all show Times
@@ -70,57 +71,21 @@ exports.getShowTimeByCinemaId = async(req,res)=>{
     }
 }
 
-//get show time by movieId
-// exports.getShowTimeByMovieId = async(req,res)=>{
-//     const {movieId} = req.params;
-//     const {selectedDate}= req.query;
-//      let date =  new Date(selectedDate);
-//     try {
-//         const showTime = await ShowTime.find({movieId,date});
-//         console.log("checking after creating st in the prod"+showTime);
-//         res.json({
-//             selectedDate,
-//             date,
-//             type:"success",
-//             showTime
-//         })
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
 
-// to get showTime and cinemas based on movie id
-// exports.getShowTime = async (req,res)=>{
-//     const { selectedDate } = req.query;
-//     let date = new Date(selectedDate);
-//     const { movieId } = req.params;
-//     console.log(movieId)
-//     try {
-//         const showTime = await ShowTime.find({movieId,date });
-//           console.log(showTime);
-//         let cinema_id = showTime.map((value,index) =>{
-//             return value.cinemaId;
-//         })
-//         // console.log(cinema_id);
-//         let cinema_details=[];
-//         for (let i=0;i<cinema_id.length;i++){
-//             if(cinema_id){
-//                 const cinema_dets = await Cinema.findById(cinema_id,{_id:0});
-//                 cinema_details.push(cinema_dets);
-//             }
-//         }
-// //  console.log(cinema_details);
-//          res.status(200).json({
-//             type: 'success',
-//             message:"success",
-//             showTime,
-//             cinemaData: cinema_details
-//           });
-//     } catch (error) {
-
-//         console.log(error);
-//         res.status(500).json({ message: error.message, type:"error" });
-//     }
-// }
-
-  
+   // To update a showTiming
+exports.updateShowTime = async (req, res, next) => {
+  try {
+    await ShowTime.updateOne(
+      { _id: req.body.showTimeId },
+      { $push: { reservedSeats: req.body.selectedSeats } }
+    );
+    // Go to next middleware for creating stripe checkout session
+    createCheckoutSession(req, res, next);
+  } catch(error) {
+    console.log(error);
+    res.status(500).json({
+      type:"error",
+      message:error.message
+    })
+  }
+};

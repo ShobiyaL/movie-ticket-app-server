@@ -32,7 +32,7 @@ const reservationSchema = new Schema({
     type: String,
     required: [true, 'Please provide movie name']
   },
-  screenId: {
+  cinemaId: {
     type: Schema.Types.ObjectId,
     ref: 'Screen',
     required: [true, 'Please provide cinema id']

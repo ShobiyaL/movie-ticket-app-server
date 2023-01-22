@@ -3,7 +3,6 @@ const cors = require('cors')
 
 const app = express();
 
-
 const publicRoute = require('./routes/public');
 const adminRoute = require('./routes/admin');
 const AuthCheck = require("./middlewares/AuthCheck");

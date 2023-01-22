@@ -10,8 +10,14 @@ const GetSingleMovieController = require('../controllers/public/GetSingleMovieCo
 const GetMovieOnSearchController = require('../controllers/public/GetMovieOnSearchController')
 const {cinemaByCity,cities,getCinemaById} = require('../controllers/public/CinemaController')
 
- const {getShowTime,allShowTime,getShowTimeByMovieId,getShowTimeByCinemaId} = require('../controllers/public/ShowTimeController')
+ const {getShowTime,allShowTime,updateShowTime,getShowTimeByMovieId,getShowTimeByCinemaId} = require('../controllers/public/ShowTimeController')
 
+ const { createCheckoutSession } = require('../controllers/public/CheckoutController');
+ const {
+  createReservation,
+  getAllReservations,
+  getReservation
+} = require('../controllers/public/ReservationController');
 
 router.post('/sign-up', SignUpController);
 
@@ -32,6 +38,13 @@ router.get('/cinema/filter/cities',cities) ;
   router.get('/showTime/:movieId',getShowTime);
 
   router.get('/cinema/id/:cinemaid',getCinemaById);
+
+  router.post('/checkout-session', createCheckoutSession);
+
+  router.patch('/showTime/update-showtime/:showTimeId',updateShowTime)
+  router.post('/reser/create-reservation', createReservation);
+  router.get('/reser/getAll', getAllReservations);
+  router.get('/reser/:sessionId',getReservation)
 
 //  router.get ('/showTime/:movieId',getShowTimeByMovieId);
 
