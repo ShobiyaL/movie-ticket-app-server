@@ -17,7 +17,9 @@ const AuthCheck = (req, res, next) => {
       return res.status(401).json({ message: "Signin again", type: "error" });
     }
     req.userObj = {
+      _id:payload.id,
       email: payload.email,
+      username:payload.username,
       role: payload.role,
     };
     next();

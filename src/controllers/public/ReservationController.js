@@ -28,11 +28,11 @@ exports.createReservation = async (req, res, next) => {
 
   // To get all reservations of a user
 exports.getAllReservations = async (req, res, next) => {
-    const { startAt, screenId, date } = req.query;
+    const { startAt, cinemaId, date } = req.query;
     try {
       const reservations = await Reservation.find({
         startAt: { $eq: startAt },
-        screenId: { $eq: screenId },
+        cinemaId: { $eq: cinemaId },
         date: new Date(date)
       }).exec();
       res.status(200).json({

@@ -8,8 +8,6 @@ const adminRoute = require('./routes/admin');
 const AuthCheck = require("./middlewares/AuthCheck");
 const AdminCheck = require("./middlewares/AdminCheck");
 
- 
-
 app.use(cors());
 app.use(express.json());
 
