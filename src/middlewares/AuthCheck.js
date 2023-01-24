@@ -9,7 +9,7 @@ const AuthCheck = (req, res, next) => {
     }
     
     const token = tokenHeader.split(' ')[1];
-    //  console.log(token);
+      // console.log(token);
     if (!token) {
       return res.status(404).json({ message: "tokenData missing", type: "error" });
     }

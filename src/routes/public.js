@@ -5,7 +5,7 @@ const router = express.Router();
 const { stripeEventHandler } = require('../controllers/public/CheckOutController')
 const SignUpController = require("../controllers/public/SignUpController");
 const SignInController =require("../controllers/public/SignInController");
-const {getUserProfile} = require('../controllers/public/ProfileController');
+
 const {GetAllMoviesController,GetSingleMovieController,GetMovieOnSearchController} = require('../controllers/public/MovieController')
 const {cinemaByCity,cities,getCinemaById} = require('../controllers/public/CinemaController')
 
@@ -44,7 +44,7 @@ router.get('/cinema/filter/cities',cities) ;
   router.post('/reser/create-reservation', createReservation);
   router.get('/reser/getAll', getAllReservations);
   router.get('/reser/:sessionId',getReservation);
-  router.get('/user/profile/:userId',getUserProfile);
+ 
   router.post('/stripe/webhook', express.raw({ type: 'application/json' }), stripeEventHandler)
 
 //  router.get ('/showTime/:movieId',getShowTimeByMovieId);
