@@ -7,7 +7,8 @@ const AuthCheck = (req, res, next) => {
     if (!tokenHeader) {
       return res.status(404).json({ message: "Not Valid Request", type: "error" });
     }
-    const token = tokenHeader;
+    
+    const token = tokenHeader.split(' ')[1];
     //  console.log(token);
     if (!token) {
       return res.status(404).json({ message: "tokenData missing", type: "error" });
