@@ -2,14 +2,14 @@ const { validateTokenFunc } = require("../utils/token");
 
 const AuthCheck = (req, res, next) => {
   const tokenHeader = req.headers.authorization;
-  // console.log(typeof(tokenHeader));
+  //  console.log(tokenHeader);
   try {
     if (!tokenHeader) {
       return res.status(404).json({ message: "Not Valid Request", type: "error" });
     }
     
     const token = tokenHeader.split(' ')[1];
-      // console.log(token);
+      //  console.log(token);
     if (!token) {
       return res.status(404).json({ message: "tokenData missing", type: "error" });
     }

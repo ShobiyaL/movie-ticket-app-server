@@ -5,7 +5,7 @@ const router = express.Router();
 const {createMovie} = require('../controllers/admin/movie/MovieController');
  const {createCinema,updateCinema} = require('../controllers/admin/cinema/CinemaController');
 const {createShowTime} = require('../controllers/admin/showTime/ShowTimeController');
-// const {getUserProfile} = require('../controllers/admin/profile/ProfileController');
+
 router.post('/movie/create-movie',createMovie);
 
 router.post('/cinema/create-cinema',createCinema);

@@ -79,7 +79,7 @@ exports.updateShowTime = async (req, res, next) => {
       { _id: req.body.showTimeId },
       { $push: { reservedSeats: req.body.selectedSeats } }
     );
-    // Go to next middleware for creating stripe checkout session
+    
     createCheckoutSession(req, res, next);
   } catch(error) {
     console.log(error);
