@@ -21,9 +21,6 @@ exports.createCheckoutSession = async (req, res, next) => {
       {
         price_data: {
           currency: 'INR',
-          product_data:{
-            name:movie,
-          },
           unit_amount: totalPrice*100,
         },
         quantity: 1,
