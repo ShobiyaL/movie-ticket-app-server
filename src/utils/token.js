@@ -6,7 +6,7 @@ const createTokenFunc = (payload)=>{
 };
 
 const validateTokenFunc = (token)=>{
-    console.log(token);
+    // console.log(token);
     return jwt.verify(token, process.env.SECRET_STRING)
 }
 
