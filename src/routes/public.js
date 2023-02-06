@@ -24,7 +24,7 @@ router.post('/sign-in', SignInController);
 
 router.get('/movie/get-allMovies',GetAllMoviesController);
 
-router.get('/search',GetMovieOnSearchController);
+router.get('/movie/search',GetMovieOnSearchController);
 
 router.get('/movie/:movieid',GetSingleMovieController);
 
