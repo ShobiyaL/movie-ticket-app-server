@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dbConnect = async () => {
   const mongoConnectionString = process.env.MONGODB_URI;
   try {
+    mongoose.set('strictQuery', false)
     await mongoose.connect(mongoConnectionString);
     console.log("MongoDB database connection established successfully");
   } catch (error) {
